@@ -20,6 +20,11 @@ public class Meal {
     }
 
     public int getDiscountedPrice(int discount){
+
+        if (discount> this.price){
+            throw new IllegalArgumentException("Discount cannot be higher than the price");
+        }
+
         return this.price - discount;
     }
 
@@ -35,5 +40,13 @@ public class Meal {
     @Override
     public int hashCode() {
         return Objects.hash(price, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "price=" + price +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

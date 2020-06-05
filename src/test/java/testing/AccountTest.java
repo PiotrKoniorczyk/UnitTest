@@ -2,9 +2,9 @@ package testing;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-//import static org.hamcrest.MatcherAssert.assertThat;
-//import static org.hamcrest.Matchers.*;
+//import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
@@ -17,11 +17,11 @@ class AccountTest {
 
         //then
         assertFalse(newAccount.isActive(), "Check if new account is not active");
-//        assertThat(newAccount.isActive(), equalTo(false));        //hamcreast
-//        assertThat(newAccount.isActive(), is(false));             //hamcreast
+        assertThat(newAccount.isActive(), equalTo(false));        //hamcreast
+        assertThat(newAccount.isActive(), is(false));             //hamcreast
 
 
-        assertThat(newAccount.isActive()).isFalse();                //assertj
+//        assertThat(newAccount.isActive()).isFalse();                //assertj
 
 
     }
@@ -35,9 +35,9 @@ class AccountTest {
 
         //then
         assertTrue(newAccount.isActive());
-//        assertThat(newAccount.isActive(),equalTo(true));        //hamcreast
+        assertThat(newAccount.isActive(),equalTo(true));        //hamcreast
 
-        assertThat(newAccount.isActive()).isTrue();               //assertj
+//        assertThat(newAccount.isActive()).isTrue();               //assertj
     }
 
     @Test
@@ -50,9 +50,9 @@ class AccountTest {
 
         //then
         assertNull(address);
-//        assertThat(address, nullValue());                               //hamcreast
+        assertThat(address, nullValue());                               //hamcreast
 
-        assertThat(address).isNull();                                     //assertj
+//        assertThat(address).isNull();                                     //assertj
     }
 
     @Test
@@ -69,9 +69,9 @@ class AccountTest {
         assertNotNull(defaultAddress);
 
         //assertThat()
-//        assertThat(defaultAddress, is(notNullValue()));                 //hamcreast
+        assertThat(defaultAddress, is(notNullValue()));                 //hamcreast
 
-        assertThat(defaultAddress).isNotNull();                           //assertj
+//        assertThat(defaultAddress).isNotNull();                           //assertj
 
     }
 
