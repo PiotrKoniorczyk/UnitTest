@@ -2,6 +2,7 @@ package testing;
 
 public class Account {
     private boolean acctive;
+    private Address defaultDeliveryAddress;
 
     public Account(){
         this.acctive = false;
@@ -13,5 +14,13 @@ public class Account {
 
     public boolean isActive(){
         return this.acctive;
+    }
+
+    public Address getDefaultDeliveryAddress() {
+        return defaultDeliveryAddress;
+    }
+
+    public void setDefaultDeliveryAddress(Address defaultDeliveryAddress) {
+        this.defaultDeliveryAddress = defaultDeliveryAddress;
     }
 }
