@@ -1,6 +1,14 @@
 package testing;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -71,4 +79,40 @@ class MealTest {
         assertThrows(IllegalArgumentException.class,  () -> meal.getDiscountedPrice(40));
 
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {5,10,15,19})
+    void mealPriceShouldBeLowerThan20(int price){
+        assertThat(price, lessThan(20));
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("createMealsWithNameAndPrice")
+    void burgersShouldHaveCorrectNameAndPrice(String name, int price){
+        assertThat(name, containsString("burger"));
+        assertThat(price, greaterThan(5));
+
+    }
+    private static Stream<Arguments> createMealsWithNameAndPrice(){
+        return Stream.of(
+                Arguments.of("Hamburger", 10),
+                Arguments.of("Cheaseburger", 12)
+        );
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("createCakeName")
+    void cakeNameShouldEndWithCake(String name){
+        assertThat(name, notNullValue());
+        assertThat(name, endsWith("cake"));
+
+    }
+
+    private static  Stream<String> createCakeName(){
+        List<String> cakeName = Arrays.asList("Cheesecake", "Fruitcake", "Cupcake");
+        return cakeName.stream();
+    }
+
 }

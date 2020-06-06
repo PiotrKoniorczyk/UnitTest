@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: testing.AccountTest
+Test set: testing.OrderStatusTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.03 s - in testing.AccountTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s - in testing.OrderStatusTest
