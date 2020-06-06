@@ -8,6 +8,15 @@ public class Account {
         this.acctive = false;
     }
 
+    public Account(Address defaultDeliveryAddress) {
+        this.defaultDeliveryAddress = defaultDeliveryAddress;
+        if(defaultDeliveryAddress != null){
+            activate();
+        }else {
+            this.acctive = false;
+        }
+    }
+
     public void activate(){
         this.acctive = true;
     }

@@ -1,7 +1,6 @@
 package testing;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Card {
@@ -10,6 +9,10 @@ public class Card {
 
     void addOrderToCart(Order order){
         this.order.add(order);
+    }
+
+    public List<Order> getOrder() {
+        return order;
     }
 
     void clearCart(){
