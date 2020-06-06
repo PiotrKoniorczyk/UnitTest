@@ -1,6 +1,8 @@
 package testing;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,17 +12,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@ExtendWith(BeforeAfterExtension.class)
 class OrderTest {
 
     private Order order;
 
     @BeforeEach
     void initializeOrder(){
+        System.out.println("Before each");
         order = new Order();
     }
 
     @AfterEach
     void cleanUp(){
+        System.out.println("Before each");
         order.cancel();
     }
 
