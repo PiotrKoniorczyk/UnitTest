@@ -5,7 +5,6 @@ import org.junit.jupiter.api.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderBackUpTest {
 
