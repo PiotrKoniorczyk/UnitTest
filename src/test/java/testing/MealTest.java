@@ -24,6 +24,10 @@ import static org.hamcrest.Matchers.*;
 //import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 
 class MealTest {
 
@@ -172,6 +176,43 @@ class MealTest {
 
         return dynamicTests;
     }
+    @Test
+    void testMealSumPrice(){
+        //give
+        Meal meal = mock(Meal.class);
+
+        given(meal.getPrice()).willReturn(15);
+        given(meal.getQuantity()).willReturn(3);
+        given(meal.sumPrice()).willCallRealMethod();
+        //when
+
+        int result = meal.sumPrice();
+        //then
+        assertThat(result,equalTo(45));
+    }
+
+    @Test
+    void testMealSumPriceWitchSpy(){
+        //give
+        Meal meal = new Meal(14,2,"Buritto");
+        Meal mealSpy = spy(meal);
+
+        given(mealSpy.getPrice()).willReturn(14);
+        given(mealSpy.getQuantity()).willReturn(2);
+        //when
+
+        int result = mealSpy.sumPrice();
+        //then
+        then(mealSpy).should().getPrice();
+        then(mealSpy).should().getQuantity();
+        assertThat(result,equalTo(28));
+    }
+
+
+
+
+
+
 
     private int calculatePrice(int price, int quantity){
         return price*quantity;

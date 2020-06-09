@@ -19,5 +19,10 @@ public class AccountReposytoryStab implements AccountReposytory{
 
     }
 
+    @Override
+    public List<String> getByName(String name) {
+        return null;
+    }
+
 
 }
