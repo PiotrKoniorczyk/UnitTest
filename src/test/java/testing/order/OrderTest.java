@@ -3,9 +3,8 @@ package testing.order;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import testing.Meal;
+import testing.meal.Meal;
 import testing.extension.BeforeAfterExtension;
-import testing.order.Order;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,41 +20,41 @@ class OrderTest {
     private Order order;
 
     @BeforeEach
-    void initializeOrder(){
+    void initializeOrder() {
         System.out.println("Before each");
         order = new Order();
     }
 
     @AfterEach
-    void cleanUp(){
+    void cleanUp() {
         System.out.println("Before each");
         order.cancel();
     }
 
 
     @Test
-    void testAssertArrayEquals(){
+    void testAssertArrayEquals() {
         //given
-        int[] ints1 = {1,2,3};
-        int[] ints2 = {1,2,3};
+        int[] ints1 = {1, 2, 3};
+        int[] ints2 = {1, 2, 3};
 
         //then
         assertArrayEquals(ints1, ints2);
     }
 
     @Test
-    void mealListShouldBeEmptyAfterCreationOfOrder(){
+    void mealListShouldBeEmptyAfterCreationOfOrder() {
 
 
         //then
-        assertThat(order.getMeals(),  empty());
+        assertThat(order.getMeals(), empty());
         assertThat(order.getMeals().size(), equalTo(0));
         assertThat(order.getMeals(), hasSize(0));
         MatcherAssert.assertThat(order.getMeals(), emptyCollectionOf(Meal.class));
     }
 
     @Test
-    void addingMealToOrderShouldIncreaseOrderSize(){
+    void addingMealToOrderShouldIncreaseOrderSize() {
         //given
         Meal meal = new Meal(15, "Burger");
         Meal meal2 = new Meal(5, "Sandwich");
@@ -73,7 +72,7 @@ class OrderTest {
     }
 
     @Test
-    void removingMealFromOrderShouldDecreaseOrderSize(){
+    void removingMealFromOrderShouldDecreaseOrderSize() {
 
         //given
         Meal meal = new Meal(15, "Burger");
@@ -88,7 +87,7 @@ class OrderTest {
     }
 
     @Test
-    void mealsShouldBeInCorrectOrderAfterAddingThemToOrder(){
+    void mealsShouldBeInCorrectOrderAfterAddingThemToOrder() {
         //given
         Meal meal1 = new Meal(15, "Burger");
         Meal meal2 = new Meal(5, "Sandwich");
@@ -103,7 +102,7 @@ class OrderTest {
     }
 
     @Test
-    void testIfTwoMealListAreTheSame(){
+    void testIfTwoMealListAreTheSame() {
         //given
         Meal meal1 = new Meal(15, "Burger");
         Meal meal2 = new Meal(5, "Sandwich");
@@ -113,14 +112,13 @@ class OrderTest {
         List<Meal> meals2 = Arrays.asList(meal1, meal2);
 
 
-
         //then
         assertThat(meals1, is(meals2));
 
     }
 
     @Test
-    void orderTotalPriceShouldNotExceedsMaxIntValue(){
+    void orderTotalPriceShouldNotExceedsMaxIntValue() {
         //give
         Meal meal1 = new Meal(Integer.MAX_VALUE, "Burger");
         Meal meal2 = new Meal(Integer.MAX_VALUE, "Sandwich");
@@ -132,7 +130,7 @@ class OrderTest {
     }
 
     @Test
-    void emptyOrderTotalPriceShouldEqualZero(){
+    void emptyOrderTotalPriceShouldEqualZero() {
         //given @BeforeEach
         //when
         //then
@@ -140,7 +138,7 @@ class OrderTest {
     }
 
     @Test
-    void cancelingOrderShouldRemoveAllItemsFromMealsList(){
+    void cancelingOrderShouldRemoveAllItemsFromMealsList() {
         //given
         Meal meal1 = new Meal(15, "Burger");
         Meal meal2 = new Meal(5, "Sandwich");

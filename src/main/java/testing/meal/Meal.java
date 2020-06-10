@@ -1,4 +1,4 @@
-package testing;
+package testing.meal;
 
 import java.util.Objects;
 
@@ -25,7 +25,7 @@ public class Meal {
     }
 
     public int getPrice() {
-        return price;
+        return this.price;
     }
 
     public int getDiscountedPrice(int discount){
@@ -67,4 +67,9 @@ public class Meal {
     int sumPrice(){
         return getPrice()*getQuantity();
     }
+
+    public String getName() {
+        return this.name;
+    }
+
 }

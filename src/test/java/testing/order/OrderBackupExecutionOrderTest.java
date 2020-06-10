@@ -1,8 +1,6 @@
 package testing.order;
 
 import org.junit.jupiter.api.Test;
-import testing.order.Order;
-import testing.order.OrderBackUp;
 
 import java.io.IOException;
 
@@ -15,7 +13,7 @@ public class OrderBackupExecutionOrderTest {
         //given
         OrderBackUp orderBackUp = new OrderBackUp();
         //then
-        assertThrows(IOException.class, ()->orderBackUp.backupOrder(new Order() ));
+        assertThrows(IOException.class, () -> orderBackUp.backupOrder(new Order()));
         //then
 
     }

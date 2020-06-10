@@ -3,7 +3,7 @@ package testing.cart;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import testing.Meal;
+import testing.meal.Meal;
 import testing.order.Order;
 
 import java.time.Duration;
@@ -31,7 +31,7 @@ class CartTest {
     }
 
     @Test
-    void cardShouldBeNotEmptyAfterAddingOrderToCart(){
+    void cardShouldBeNotEmptyAfterAddingOrderToCart() {
 
         //given
         Order order = new Order();
@@ -46,23 +46,23 @@ class CartTest {
                 hasSize(1),
                 is(not(empty())),
                 is(not(emptyCollectionOf(Order.class)))
-        ) );
+        ));
         assertThat(card.getOrder(), allOf(
                 notNullValue(),
                 hasSize(1),
                 is(not(empty())),
                 is(not(emptyCollectionOf(Order.class)))
-        ) );
+        ));
 
         assertAll("This is a group of assertions for cart",
-                ()->assertThat(card.getOrder(), notNullValue()),
-                ()->assertThat(card.getOrder(), hasSize(1)),
-                ()->assertThat(card.getOrder(), is(not(empty()))),
-                ()->assertThat(card.getOrder(), is(not(emptyCollectionOf(Order.class)))),
-                ()->{
-                            List<Meal> mealList = card.getOrder().get(0).getMeals();
+                () -> assertThat(card.getOrder(), notNullValue()),
+                () -> assertThat(card.getOrder(), hasSize(1)),
+                () -> assertThat(card.getOrder(), is(not(empty()))),
+                () -> assertThat(card.getOrder(), is(not(emptyCollectionOf(Order.class)))),
+                () -> {
+                    List<Meal> mealList = card.getOrder().get(0).getMeals();
                     assertThat(mealList, empty());
-                        }
+                }
 
 
         );

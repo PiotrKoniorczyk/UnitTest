@@ -1,7 +1,9 @@
 testing/extension/IOExceptionIgnoreExtension.class
 testing/account/Address.class
 testing/account/Account.class
+testing/meal/MealRepository.class
 testing/order/Order.class
+testing/meal/Meal.class
 testing/order/OrderStatus.class
 testing/extension/BeforeAfterExtension.class
 testing/order/OrderBackUp.class

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: testing.MealTest
 -------------------------------------------------------------------------------
-Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.089 s - in testing.MealTest
+Tests run: 23, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.087 s <<< FAILURE! - in testing.MealTest
+calculateMealPrices  Time elapsed: 0.015 s  <<< ERROR!
+java.lang.NoSuchMethodError: 'void testing.order.Order.addMealToOrder(testing.Meal)'
+	at testing.MealTest.calculateMealPrices(MealTest.java:155)
+

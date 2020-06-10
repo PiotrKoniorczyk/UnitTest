@@ -3,8 +3,7 @@ package testing.account;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import testing.account.Account;
-import testing.account.Address;
+
 
 //import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,7 +16,7 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 class AccountTest {
 
     @Test
-    void newAccountSchouldNotBeActiveAfterCreation(){
+    void newAccountSchouldNotBeActiveAfterCreation() {
         //given
         //when
         Account newAccount = new Account();
@@ -32,8 +31,9 @@ class AccountTest {
 
 
     }
+
     @Test
-    void accountShouldBeActiveAfterActivation(){
+    void accountShouldBeActiveAfterActivation() {
         //given
         Account newAccount = new Account();
 
@@ -42,13 +42,13 @@ class AccountTest {
 
         //then
         assertTrue(newAccount.isActive());
-        assertThat(newAccount.isActive(),equalTo(true));        //hamcreast
+        assertThat(newAccount.isActive(), equalTo(true));        //hamcreast
 
 //        assertThat(newAccount.isActive()).isTrue();               //assertj
     }
 
     @Test
-    void newlyCreatedAccountShouldNotHaveDefaultDeliveryAdressSet(){
+    void newlyCreatedAccountShouldNotHaveDefaultDeliveryAdressSet() {
         //given
         Account account = new Account();
 
@@ -63,9 +63,9 @@ class AccountTest {
     }
 
     @Test
-    void defaultDeliveryShouldNotBeNullAfterBeingSet(){
+    void defaultDeliveryShouldNotBeNullAfterBeingSet() {
         //given
-        Address address = new Address("Krakowska","67c");
+        Address address = new Address("Krakowska", "67c");
         Account account = new Account();
         account.setDefaultDeliveryAddress(address);
 
@@ -84,7 +84,7 @@ class AccountTest {
 
 
     @RepeatedTest(5)
-    void newAccountWithNoNullAddressShouldBeActive(){
+    void newAccountWithNoNullAddressShouldBeActive() {
 
         //given
         Address address = new Address("Puławska", "46/6");
@@ -93,22 +93,23 @@ class AccountTest {
         Account account = new Account(address);
 
         //then
-        assumingThat(address != null, ()->{
+        assumingThat(address != null, () -> {
             assertTrue(account.isActive());
         });
     }
 
     @Test
-    void invalidEmailShouldThrowException(){
+    void invalidEmailShouldThrowException() {
         //given
         Account account = new Account();
         //when
         //then
-        assertThrows(IllegalArgumentException.class, ()-> account.setEmail("Wrong address"));
+        assertThrows(IllegalArgumentException.class, () -> account.setEmail("Wrong address"));
 
     }
+
     @Test
-    void validEmailShouldBeTest(){
+    void validEmailShouldBeTest() {
         //given
         Account account = new Account();
         //when

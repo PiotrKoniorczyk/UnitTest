@@ -1,4 +1,4 @@
-package testing;
+package testing.meal;
 
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Tag;
@@ -37,7 +37,7 @@ class MealTest {
         Meal meal = new Meal(35);
 
         //when
-        int discountedPrice  = meal.getDiscountedPrice(7);
+        int discountedPrice = meal.getDiscountedPrice(7);
 
         //then
         assertEquals(28, discountedPrice);
@@ -47,68 +47,69 @@ class MealTest {
     }
 
     @Test
-    void referencesToTheSameObjectShouldBeEqual(){
+    void referencesToTheSameObjectShouldBeEqual() {
         //given
         Meal meal1 = new Meal(10);
         Meal meal2 = meal1;
         //then
-        assertSame(meal1,meal2);
+        assertSame(meal1, meal2);
         assertThat(meal1, sameInstance(meal2));                    //hamcreast
 
 //        assertThat(meal1).isSameAs(meal2);                           //assertj
     }
 
     @Test
-    void referencesToDifferentObjectShouldNotBeEqual(){
+    void referencesToDifferentObjectShouldNotBeEqual() {
         //given
         Meal meal1 = new Meal(10);
         Meal meal2 = new Meal(20);
         //then
-        assertNotSame(meal1,meal2);
+        assertNotSame(meal1, meal2);
         assertThat(meal1, not(sameInstance(meal2)));                    //hamcreast
 
 //        assertThat(meal1).isNotSameAs(meal2);                             //assertj
     }
 
     @Test
-    void toMealsShouldBeEqualWhenPriceAndNameAreTheSame(){
+    void toMealsShouldBeEqualWhenPriceAndNameAreTheSame() {
         //given
         Meal meal1 = new Meal(10, "Pizza");
         Meal meal2 = new Meal(10, "Pizza");
 
         //then
-        assertEquals(meal1,meal2, "Checking if two meals are equal");
+        assertEquals(meal1, meal2, "Checking if two meals are equal");
         assertThat(meal1, equalTo(meal2));                              //hamcreast
 
 //        assertThat(meal1).isEqualTo(meal2);                               //assertj
     }
 
     @Test
-    void exceptionShouldBeThrowIfDiscountIsHigherThenThePrice(){
+    void exceptionShouldBeThrowIfDiscountIsHigherThenThePrice() {
         //given
-        Meal meal = new Meal(8,"Soup");
+        Meal meal = new Meal(8, "Soup");
 
         //when
         //then
-        assertThrows(IllegalArgumentException.class,  () -> meal.getDiscountedPrice(40));
+        assertThrows(IllegalArgumentException.class, () -> meal.getDiscountedPrice(40));
 
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {5,10,15,19})
-    void mealPriceShouldBeLowerThan20(int price){
+    @ValueSource(ints = {5, 10, 15, 19})
+    void mealPriceShouldBeLowerThan20(int price) {
         assertThat(price, lessThan(20));
     }
 
 
     @ParameterizedTest
     @MethodSource("createMealsWithNameAndPrice")
-    void burgersShouldHaveCorrectNameAndPrice(String name, int price){
+    void burgersShouldHaveCorrectNameAndPrice(String name, int price) {
         assertThat(name, containsString("burger"));
         assertThat(price, greaterThan(5));
 
     }
-    private static Stream<Arguments> createMealsWithNameAndPrice(){
+
+    private static Stream<Arguments> createMealsWithNameAndPrice() {
         return Stream.of(
                 Arguments.of("Hamburger", 10),
                 Arguments.of("Cheaseburger", 12)
@@ -118,43 +119,43 @@ class MealTest {
 
     @ParameterizedTest
     @MethodSource("createCakeName")
-    void cakeNameShouldEndWithCake(String name){
+    void cakeNameShouldEndWithCake(String name) {
         assertThat(name, notNullValue());
         assertThat(name, endsWith("cake"));
 
     }
 
-    private static  Stream<String> createCakeName(){
+    private static Stream<String> createCakeName() {
         List<String> cakeName = Arrays.asList("Cheesecake", "Fruitcake", "Cupcake");
         return cakeName.stream();
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,3,5,8})
+    @ValueSource(ints = {1, 3, 5, 8})
     @ExtendWith(IOExceptionIgnoreExtension.class)
-    void mealPriceShouldBeLowerThan10(int price){
-        if (price > 5){
+    void mealPriceShouldBeLowerThan10(int price) {
+        if (price > 5) {
             throw new IllegalArgumentException();
         }
         assertThat(price, lessThan(10));
     }
 
     @TestFactory
-    Collection<DynamicTest> dynamicTestsCollection(){
+    Collection<DynamicTest> dynamicTestsCollection() {
         return Arrays.asList(
-                dynamicTest("Dynamic Test 1",() -> assertThat(5,
-                lessThan(6))),
-                dynamicTest("Dynamic Test 2",() -> assertEquals(4, 2*2))
+                dynamicTest("Dynamic Test 1", () -> assertThat(5,
+                        lessThan(6))),
+                dynamicTest("Dynamic Test 2", () -> assertEquals(4, 2 * 2))
         );
     }
 
     @Tag("Fries")
     @TestFactory
-    Collection<DynamicTest> calculateMealPrices(){
+    Collection<DynamicTest> calculateMealPrices() {
         Order order = new Order();
-        order.addMealToOrder(new Meal(10,2,"Hamburger"));
-        order.addMealToOrder(new Meal(7,4,"Fries"));
-        order.addMealToOrder(new Meal(22,3,"Pizza"));
+        order.addMealToOrder(new Meal(10, 2, "Hamburger"));
+        order.addMealToOrder(new Meal(7, 4, "Fries"));
+        order.addMealToOrder(new Meal(22, 3, "Pizza"));
 
         Collection<DynamicTest> dynamicTests = new ArrayList<>();
 
@@ -176,8 +177,9 @@ class MealTest {
 
         return dynamicTests;
     }
+
     @Test
-    void testMealSumPrice(){
+    void testMealSumPrice() {
         //give
         Meal meal = mock(Meal.class);
 
@@ -188,13 +190,13 @@ class MealTest {
 
         int result = meal.sumPrice();
         //then
-        assertThat(result,equalTo(45));
+        assertThat(result, equalTo(45));
     }
 
     @Test
-    void testMealSumPriceWitchSpy(){
+    void testMealSumPriceWitchSpy() {
         //give
-        Meal meal = new Meal(14,2,"Buritto");
+        Meal meal = new Meal(14, 2, "Buritto");
         Meal mealSpy = spy(meal);
 
         given(mealSpy.getPrice()).willReturn(14);
@@ -205,17 +207,12 @@ class MealTest {
         //then
         then(mealSpy).should().getPrice();
         then(mealSpy).should().getQuantity();
-        assertThat(result,equalTo(28));
+        assertThat(result, equalTo(28));
     }
 
 
-
-
-
-
-
-    private int calculatePrice(int price, int quantity){
-        return price*quantity;
+    private int calculatePrice(int price, int quantity) {
+        return price * quantity;
     }
 
 }
